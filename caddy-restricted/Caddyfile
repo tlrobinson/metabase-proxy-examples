@@ -1,0 +1,23 @@
+metabase-caddy-private.localhost:80 {
+  tls off
+  proxy / http://metabase:3000/ {
+    transparent
+  }
+  ipfilter / {
+	  rule allow
+	  ip 127.0.0.1
+  }
+}
+
+metabase-caddy-public.localhost:80 {
+  tls off
+  proxy /app http://metabase:3000/ {
+    transparent
+  }
+  proxy /public http://metabase:3000/ {
+    transparent
+  }
+  proxy /api/public http://metabase:3000/ {
+    transparent
+  }
+}

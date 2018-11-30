@@ -1,0 +1,7 @@
+metabase-caddy-force-language.localhost:80 {
+  tls off
+  proxy / http://metabase:3000/ {
+    transparent
+    header_upstream Accept-Language es
+  }
+}
