@@ -1,0 +1,7 @@
+metabase-caddy-non-root-path.localhost:80 {
+  tls off
+  proxy /metabase http://metabase:3000/ {
+    transparent
+    without /metabase
+  }
+}

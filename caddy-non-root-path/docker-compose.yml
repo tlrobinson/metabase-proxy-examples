@@ -1,0 +1,20 @@
+version: '3'
+services:
+
+  web:
+    image: abiosoft/caddy:no-stats
+    volumes:
+      - ./Caddyfile:/etc/Caddyfile
+      - $HOME/.caddy:/root/.caddy
+    ports:
+      - 80:80
+
+  metabase:
+    image: metabase/metabase:latest
+    volumes:
+      - metabase:/data
+    environment:
+      - MB_DB_FILE=/data
+
+volumes:
+  metabase:
