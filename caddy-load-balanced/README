@@ -1,0 +1,3 @@
+NOTES: 
+
+There are issues with setting up an instance while multiple processes are being load balanced. After setting up, you may need to run `docker-compose restart`.

@@ -1,0 +1,6 @@
+metabase-caddy.localhost:8888 {
+  tls off
+  proxy / http://metabase1:3000/ http://metabase2:3000/ {
+    transparent
+  }
+}
