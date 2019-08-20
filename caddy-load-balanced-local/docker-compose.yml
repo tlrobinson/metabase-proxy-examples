@@ -1,0 +1,33 @@
+version: "3"
+services:
+  web:
+    image: abiosoft/caddy:no-stats
+    volumes:
+      - ./Caddyfile:/etc/Caddyfile
+      - $HOME/.caddy:/root/.caddy
+    ports:
+      - 8888:8888
+
+  metabase1:
+    image: metabase-local
+    environment:
+      - MB_DB_CONNECTION_URI=postgresql://postgres:secretpassword@db:5432/postgres
+    volumes:
+      - $MB_ROOT:/app
+    entrypoint: lein run
+
+  metabase2:
+    image: metabase-local
+    environment:
+      - MB_DB_CONNECTION_URI=postgresql://postgres:secretpassword@db:5432/postgres
+    volumes:
+      - $MB_ROOT:/app
+    entrypoint: lein run
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: secretpassword
+    ports:
+      -  6432:5432
